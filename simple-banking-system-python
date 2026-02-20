@@ -1,0 +1,104 @@
+'''
+       =======SIMPLE BANKING SYSTEM======
+
+Features:
+1.Create new account
+2.Deposit amount
+3.Withdraw amount
+4.Check balance
+5.Exit
+
+'''
+print("-"*50)
+
+print("==========WELCOME TO OUR BANKING SYSTEM=======")
+print("-"*50)
+
+account={}
+while True:
+    print("MENU")
+    print("-"*50)
+    print("1.Create new account")
+    print("2.Deposit amount")
+    print("3.Withdraw amount")
+    print("4.Check balance")
+    print("5.Exit")
+    choice = int(input("Enter your choice(1-5): "))
+
+    if choice == 1:
+        print("Create new account")
+        print("-"*50)
+        name = input("Enter your name: ")
+        account_no = int(input("Enter your account number: "))
+        if account_no in account:
+            print("Account already exists")
+
+        else:
+
+            deposit_amount = int(input("Enter your deposit amount(minimum deposit amount Rs.500): "))
+
+            if deposit_amount >=500:
+                account[account_no] = {
+                    "name":name,
+                     "balance":deposit_amount
+                }
+                print(f"Account has been created successfully for {name}")
+                print(f"Account balance is: {deposit_amount}")
+                print(f"Account number is:{account_no}")
+
+            else:
+                 print("Minimumm deposit required is Rs.500")
+
+    elif choice == 2:
+        print("Deposit amount")
+        print("-"*50)
+        account_no = int(input("Enter your account number: "))
+        if account_no in account:
+            amount = int(input("Enter your deposit amount: "))
+            if amount >0:
+                account[account_no]["balance"] += amount
+                print(f"amount Rs: {amount} deposited successfully")
+                print(f"new balance is Rs: {account[account_no]['balance']}")
+            else:
+                print("invalid amount! amount must be greater than 0")
+        else:
+            print("Account does not exist")
+
+    elif choice == 3:
+        print("Withdraw amount")
+        print("-"*50)
+        account_no = int(input("Enter your account number: "))
+        if account_no in account:
+            current_balance = account[account_no]["balance"]
+            print(f"Current balance is Rs: {current_balance}")
+            amount = int(input("Enter your withdraw amount: "))
+            if amount > current_balance:
+                print("Insufficient balance")
+
+            else:
+                account[account_no]["balance"] -= amount
+                print(f"amount Rs: {amount} withdraw successfully")
+                print(f"new balance is Rs: {account[account_no]['balance']}")
+        else:
+            print("Account does not exist")
+
+    elif choice == 4:
+        print("Check balance")
+        print("-"*50)
+        account_no = int(input("Enter your account number: "))
+        if account_no in account:
+            balance = account[account_no]["balance"]
+            print(f"acount holder is {name}")
+            print(f"account_no is {account_no}")
+            print(f"Current balance is Rs: {balance}")
+        else:
+            print("Account does not exist")
+    elif choice == 5:
+        print("Exit")
+        print("-"*50)
+        print("THANK YOU FOR USING OUR BANKING SYSTEM")
+        print("-"*50)
+        print("Have a good day")
+        break
+    else:
+        print("Invalid choice")
